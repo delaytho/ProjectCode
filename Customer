@@ -1,1 +1,40 @@
 
+/**
+ * This class represents the customer
+ * @author hanisaf
+ */
+public class Customer {
+	//Think about the attributes you need to declare here
+	private int arriveTime;
+	private int duration;
+
+	
+	/**
+	 * Constructor of the class
+	 * @param arriveTime customer arrival time
+	 * @param duration customer duration
+	 */
+	public Customer(int arriveTime, int duration) {
+      // start here
+		this.arriveTime = arriveTime;
+		this.duration = duration;
+	}
+	
+	/**
+	 * Getter method of arrival time
+	 * @return time of arrival
+	 */
+	public int getArriveTime() {
+	   // start here
+		return arriveTime;
+	}
+	
+	/**
+	 * Getter method of duration
+	 * @return duration
+	 */
+	public int getDuration() {
+	   // start here
+		return duration;
+	}
+}
