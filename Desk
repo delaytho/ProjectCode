@@ -1,1 +1,53 @@
+/**
+ * This class represents the checkout Desk
+ * 
+ * @author hanisaf
+ *
+ */
+public class Desk {
+	
+	//What attributes are needed here?
+	//What does desk need to know to operate?
+	public boolean isCustomer;
+	
+	/**
+	 * Take a customer and start processing it
+	 * @param c customer to be processed
+	 */
+	public void processCustomer(Customer c) {
+		System.out.println("Desk: started processing customer at " + Clock.getTime());
+		//start here
+		isCustomer = true;
+	}
 
+	/**
+	 * 
+	 * @return true if the desk is currently processing a customer
+	 */
+	public boolean isBusy() {
+      //start here
+	  if (isCustomer) {
+		  return true;
+	  }
+	  else if (!isCustomer) {
+		  return false;
+	  }
+	return isCustomer;
+				
+	}
+	/**
+	 * Checks if the customer is done at the current minute
+	 * This method is used to print information to the console
+	 * if so, prints "Desk: finished processing customer at " + Clock.getTime())
+	 */
+	public void isCustomerDone() {
+      //start here
+	  if (isBusy()) {
+		  return;
+	  }
+	  else if(!isBusy()) {
+		  System.out.println("Desk: finished processing customer at " + Clock.getTime());
+		  isCustomer = false;
+	  }
+	}
+}
