@@ -1,0 +1,105 @@
+import java.util.ArrayList;
+
+
+/**
+ * This class represents the waiting queue
+ * 
+ * @author hanisaf
+ *
+ */
+public class Queue {
+	// What attribute are needed to store data in a queue
+	// hint a collection
+	// also make sure you store the max size 
+	// and other information needed to compute the waiting time of the customer
+	private ArrayList<Customer> customers;
+	private int maxSize;
+	private boolean isEmpty;
+	private int waitingTime;
+	
+	
+	
+	
+	
+
+	
+	/**
+	 * Constructor
+	 */
+	public Queue() {
+      //start here
+		customers = new ArrayList<Customer>();
+	}
+	
+	/**
+	 * Add a customer to the queue
+	 * @param c customer to be added
+	 */
+	public void queueCustomer(Customer c) {   /// think ive got this one right 
+		System.out.println("Queue: added a customer at " + Clock.getTime());
+		//start here
+		customers.add(c);
+	}
+	
+	/**
+	 * remove a customer from the queue, remember a queue means first come first served
+	 * @return the customer removed
+	 */
+	public Customer unqueueCustomer() {  // think ive got this right 
+		//start here
+		System.out.println("Queue: removed a customer at " + Clock.getTime());
+		Customer customer = customers.get(0);
+		customers.remove(0);
+		return customer;
+	}
+	
+	/**
+	 * Getter method 
+	 * @return queue max size
+	 */
+	public int getMaxSize() { /// unfinished 
+	   //start here
+		int queueNum = customers.size();
+		if (queueNum > maxSize) {
+			maxSize = queueNum;
+		}
+		
+		return maxSize;
+		}
+	
+	
+	/**
+	 * Getter method
+	 * 
+	 * @return the size of the queue
+	 */
+	public int getSize() {  // got this right 
+	   //start here
+		return customers.size();
+	}
+	
+	/**
+	 * Getter method
+	 * @return true if the queue is empty i.e. no customers
+	 */
+	public boolean isEmpty() { /// think ive got this right 
+	   //start here
+		if (customers.size() == 0) {
+		return true;
+		}
+		
+		else {
+			return false;
+		}
+		
+	}
+	
+	/**
+	 * Getter method
+	 * @return the waiting time of the last customer
+	 */
+	public int getWaitingTime() { ///unfinished
+	   //start here
+		return -1;
+	}
+}
