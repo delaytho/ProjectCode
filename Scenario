@@ -1,1 +1,118 @@
 
+import java.util.ArrayList;
+import java.io.IOException;
+import java.util.Scanner;
+import java.io.File;
+
+/**
+ * This class represents the scenario driving the program
+ * This is the most complicate class and you need to think carefully
+ * to represent the process model of the restaurant here
+ * @author hanisaf
+ *
+ */
+public class Scenario {
+	int minTime = 0; 
+	int maxTime = 300; 
+	Desk desk = new Desk();
+	Queue queue = new Queue();
+
+	// what other attributes are needed?
+	ArrayList<Integer>waitTimes = new ArrayList<Integer>();
+	ArrayList<Integer>durations = new ArrayList<Integer>();
+	ArrayList<Integer>arrTimes = new ArrayList<Integer>();
+	ArrayList<Customer>customerList = new ArrayList<Customer>();
+	
+	/**
+	 * Constructor of the class, takes the csv file to read from
+	 * @param scenarioFile
+	 */
+	public Scenario(String scenarioFile) throws IOException {	
+      //start here
+		Scanner scanner = new Scanner (new File(scenarioFile));
+		arrTimes = new ArrayList<Integer>();
+		durations = new ArrayList<Integer>();
+		waitTimes = new ArrayList<Integer>();
+		int i = 0;
+		
+		while (scanner.hasNextLine()) {
+			String line = scanner.nextLine();
+			String[] fields = line.split(",");
+			
+			arrTimes.add(Integer.parseInt(fields[0]));
+			durations.add(Integer.parseInt(fields[1]));
+			
+			Customer customer = new Customer(arrTimes.get(i), durations.get(i));
+			
+			customerList.add(customer);
+			i++;
+		}
+	}
+	
+	/**
+	 * runs the simulation
+	 */
+	public void run() throws Exception{
+		int t = 0;
+		System.out.println("Restaurant is open!");
+		Clock.printTime();
+		
+			if (arrTimes.get(t) == Clock.getTime()) {
+			
+				for (int i = 0; i <= 100; i++) {
+						System.out.println("Scenario: Customer arrived at " + Clock.getTime());
+						if (!desk.isBusy()) {
+							desk.processCustomer(customerList.get(i));
+							desk.isCustomerDone();
+							break;
+						}
+						else if (desk.isBusy()) {
+							queue.queueCustomer(customerList.get(i));
+						}
+				}
+			}
+			else {
+				Clock.tick();
+			}
+			System.out.println("The total number of customers = " + customerList.size());
+		    System.out.println("The total number of processed customers = " + desk.processCount);
+	}
+		
+	/*for (int j = 0; j < durations.get(i); j++) { //experimenting with nested loop to tick clock
+   	Clock.tick();								  //i think the else {clock.tick()} might be better
+		} */
+	
+      /*System.out.println("Restaurant is open!");
+      System.out.println("Clock: time is " + Clock.getTime());
+      System.out.println("Scenario: Customer arrived at " + customerList.get(0).getArriveTime());
+      desk.processCustomer(customerList.get(0));
+      Clock.tick();
+      Clock.tick();
+      Clock.tick();
+      Clock.tick();
+      Clock.tick();
+      desk.isCustomerDone();
+      Clock.tick();
+      Clock.tick();
+      Clock.tick();
+      Clock.tick();
+      Clock.tick();
+      System.out.println("Scenario: Customer arrived at " + customerList.get(1).getArriveTime());
+      desk.processCustomer(customerList.get(1));
+      
+      if(desk.isBusy()) {
+    	  
+      }*/
+
+      
+
+	/**
+	 * Rounds a number to three decimal point digits
+	 * @param value
+	 * @return rounded value
+	 * NO NEED TO CHANGE THIS METHOD
+	 */
+	public static double round(double value) {
+		return  Math.round(  1000.0 * value) / 1000.0;
+	}
+}
