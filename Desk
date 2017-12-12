@@ -9,30 +9,32 @@ public class Desk {
 	//What attributes are needed here?
 	//What does desk need to know to operate?
 	public boolean isCustomer;
+	public boolean isBusy;
+	public int processCount = 0;
+	int i = 0;
 	
 	/**
 	 * Take a customer and start processing it
 	 * @param c customer to be processed
 	 */
 	public void processCustomer(Customer c) {
-		System.out.println("Desk: started processing customer at " + Clock.getTime());
-		//start here
-		isCustomer = true;
-	}
+			System.out.println("Desk: started processing customer at " + c.getArriveTime());
+			isCustomer = true;
+		}
 
 	/**
 	 * 
 	 * @return true if the desk is currently processing a customer
 	 */
 	public boolean isBusy() {
-      //start here
+      isBusy = false;
 	  if (isCustomer) {
-		  return true;
+		  isBusy = true;
 	  }
 	  else if (!isCustomer) {
-		  return false;
+		  isBusy = false;
 	  }
-	return isCustomer;
+	return isBusy;
 				
 	}
 	/**
@@ -47,6 +49,7 @@ public class Desk {
 	  }
 	  else if(!isBusy()) {
 		  System.out.println("Desk: finished processing customer at " + Clock.getTime());
+		  processCount++;
 		  isCustomer = false;
 	  }
 	}
