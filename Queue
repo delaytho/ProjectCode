@@ -17,12 +17,7 @@ public class Queue {
 	private boolean isEmpty;
 	private int waitingTime;
 	
-	
-	
-	
-	
 
-	
 	/**
 	 * Constructor
 	 */
@@ -45,7 +40,8 @@ public class Queue {
 	 * remove a customer from the queue, remember a queue means first come first served
 	 * @return the customer removed
 	 */
-	public Customer unqueueCustomer() {  // think ive got this right 
+	public Customer unqueueCustomer() {  // think ive got this right //doesn't look right, idk about
+										//declaring a new customer and returning that							
 		//start here
 		System.out.println("Queue: removed a customer at " + Clock.getTime());
 		Customer customer = customers.get(0);
@@ -57,7 +53,7 @@ public class Queue {
 	 * Getter method 
 	 * @return queue max size
 	 */
-	public int getMaxSize() { /// unfinished 
+	public int getMaxSize() { // unfinished 
 	   //start here
 		int queueNum = customers.size();
 		if (queueNum > maxSize) {
@@ -83,14 +79,17 @@ public class Queue {
 	 */
 	public boolean isEmpty() { /// think ive got this right 
 	   //start here
+		boolean isEmpty = false;
+		
+		
 		if (customers.size() == 0) {
-		return true;
+		isEmpty = true;
 		}
 		
 		else {
-			return false;
+			isEmpty = false;
 		}
-		
+		return isEmpty;
 	}
 	
 	/**
@@ -102,4 +101,3 @@ public class Queue {
 		return -1;
 	}
 }
-
